@@ -719,10 +719,10 @@ address {
    TRUST BAR
    ══════════════════════════════════════════════════════════════ */
 .trust-bar {
-  margin-top: -4rem;
   position: relative;
   z-index: 10;
-  padding-bottom: 2rem;
+  padding: 0 0 2.5rem;
+  margin-top: -3rem;
 }
 
 .trust-bar__card {
@@ -789,20 +789,56 @@ address {
 
 @media (max-width: 900px) {
   .trust-bar__card {
-    flex-direction: column;
-    padding: 1.5rem;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem 1.25rem;
+    gap: 0;
     border-radius: var(--radius-xl);
   }
 
   .trust-bar__item {
-    width: 100%;
+    padding: 0.75rem;
     justify-content: flex-start;
+    gap: 0.75rem;
   }
 
+  /* Make items slightly smaller on very small screens */
+  .trust-bar__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .trust-bar__text strong {
+    font-size: 0.95rem;
+  }
+
+  .trust-bar__text span {
+    font-size: 0.72rem;
+  }
+
+  /* Hide the flex dividers in 2x2 — use grid gap instead */
   .trust-bar__divider {
-    width: 100%;
-    height: 1px;
+    display: none;
+  }
+
+  /* Internal borders between cells — items are 1,3,5,7 among all children */
+  .trust-bar__item:nth-of-type(1),
+  .trust-bar__item:nth-of-type(2) {
+    border-bottom: 1px solid var(--clr-border);
+  }
+
+  .trust-bar__item:nth-of-type(1),
+  .trust-bar__item:nth-of-type(3) {
+    border-right: 1px solid var(--clr-border);
+  }
+}
+
+@media (max-width: 480px) {
+  .trust-bar__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.85rem 0.5rem;
   }
 }
 
@@ -882,7 +918,7 @@ address {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   MARCAS (CARROSSEL)
+   MARCAS (MARQUEE)
    ══════════════════════════════════════════════════════════════ */
 .brands {
   padding: var(--sp-lg) 0;
@@ -898,7 +934,7 @@ address {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(207, 149, 41, .3), transparent);
+  background: linear-gradient(to right, transparent, rgba(207, 149, 41, .2), transparent);
 }
 
 .brands::after {
@@ -908,10 +944,10 @@ address {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(207, 149, 41, .3), transparent);
+  background: linear-gradient(to right, transparent, rgba(207, 149, 41, .2), transparent);
 }
 
-/* Override titles for dark background */
+/* Title overrides for dark bg */
 .brands .section-label {
   color: var(--clr-gold-light);
 }
@@ -922,99 +958,54 @@ address {
 
 .brands .section-title em {
   color: var(--clr-gold-light);
+  font-style: italic;
 }
 
-/* The runway wrapper */
-.brands__runway {
-  position: relative;
-  margin-top: 2.5rem;
-}
-
-.brands__line {
-  height: 1px;
-  background: linear-gradient(to right,
-      transparent 0%,
-      rgba(207, 149, 41, 0.25) 20%,
-      rgba(207, 149, 41, 0.5) 50%,
-      rgba(207, 149, 41, 0.25) 80%,
-      transparent 100%);
-  position: relative;
-}
-
-.brands__line--top::after,
-.brands__line--bottom::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 30%;
-  width: 40%;
-  height: 1px;
-  background: var(--clr-gold);
-  opacity: 0.6;
-  filter: blur(1px);
-}
-
-.brands__carousel {
+/* Marquee strip */
+.brands__marquee {
   position: relative;
   overflow: hidden;
-  padding: 0;
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  margin-top: 2.75rem;
+  padding: 0.5rem 0;
+  /* soft fade edges */
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 }
 
 .brands__track {
   display: flex;
-  gap: 0;
+  align-items: center;
+  gap: 3rem;
   width: max-content;
-  animation: scrollMarquee 32s linear infinite;
-  align-items: center;
-}
-
-.brand-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.75rem 3rem;
-  position: relative;
-  border-right: 1px solid rgba(207, 149, 41, 0.12);
-  transition: background var(--dur-med);
-  cursor: default;
-}
-
-.brand-item::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(207, 149, 41, 0.04), transparent);
-  opacity: 0;
-  transition: opacity var(--dur-med);
-}
-
-.brand-item:hover::before {
-  opacity: 1;
+  animation: scrollMarquee 40s linear infinite;
 }
 
 .brand-item__name {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
   font-weight: 400;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.06em;
   white-space: nowrap;
-  transition: color var(--dur-med);
-  position: relative;
-  z-index: 1;
+  user-select: none;
+  transition: color 0.5s ease;
 }
 
-.brand-item:hover .brand-item__name {
-  color: var(--clr-gold-light);
+.brand-item__name:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.brand-dot {
+  color: rgba(207, 149, 41, 0.4);
+  font-size: 1.2rem;
+  user-select: none;
+  flex-shrink: 0;
 }
 
 @keyframes scrollMarquee {
-  to {
-    transform: translateX(calc(-50% - 0px));
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -2269,7 +2260,10 @@ address {
   }
 
   .hero__content {
-    bottom: 10%;
+    top: 50%;
+    left: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
   }
 
   .intro__inner {

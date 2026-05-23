@@ -80,11 +80,15 @@ if (canvas) {
 
 // 1. Hero Animation on Load
 const heroTimeline = gsap.timeline();
-heroTimeline.from('.hero__headline', { y: 40, autoAlpha: 0, duration: 1, ease: 'power3.out', delay: 0.2 })
-            .from('.hero__headline em', { autoAlpha: 0, duration: 1, ease: 'power2.inOut' }, "-=0.5")
-            .from('.hero__body', { y: 20, autoAlpha: 0, duration: 0.8, ease: 'power2.out' }, "-=0.6")
-            .from('.hero__actions', { y: 20, autoAlpha: 0, duration: 0.8, ease: 'power2.out' }, "-=0.6")
-            .from('.hero__scroll-hint', { autoAlpha: 0, duration: 1, ease: 'power2.out' }, "-=0.4");
+gsap.utils.toArray('.hero__animate').forEach(element => {
+  let delay = parseFloat(element.getAttribute('data-delay')) || 0;
+  heroTimeline.to(element, { 
+    autoAlpha: 1, 
+    y: 0, 
+    duration: 1, 
+    ease: 'power3.out' 
+  }, delay / 1000);
+});
 
 
 // 2. Generic Reveal Up elements (used on products, testimonials, trust bar, etc)
