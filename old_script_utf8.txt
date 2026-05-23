@@ -1,0 +1,83 @@
+﻿Created At: 2026-05-23T01:22:01Z
+Completed At: 2026-05-23T01:22:01Z
+File Path: `file:///c:/Users/Enzo/Projetos/ag-sleephouse/script.js`
+Total Lines: 381
+Total Bytes: 15236
+Showing lines 1 to 381
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: /* ÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉ
+2:    SLEEPHOUSE ÔÇö Main Script
+3:    Scroll-driven hero image sequence + microinteractions
+4:    ÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉ */
+5: 
+6: 'use strict';
+7: 
+8: /* ÔöÇÔöÇ Config ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+9: const TOTAL_FRAMES  = 80;
+10: const IMAGE_PREFIX  = 'Bedroom_transitioning_to_bed_202605222040_';
+11: const IMAGE_EXT     = '.jpg';
+12: const PRELOAD_BATCH = 10; // frames loaded per idle tick
+13: 
+14: /* ÔöÇÔöÇ Helpers ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+15: const clamp  = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
+16: const lerp   = (a, b, t)   => a + (b - a) * t;
+17: const easeIO = t => t < .5 ? 2*t*t : -1+(4-2*t)*t; // ease-in-out quad
+18: 
+19: /* ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+20:    LOADING OVERLAY
+21: ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+<truncated 13460 bytes>
+ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+331: function initResize(sequence) {
+332:   let resizeTimer;
+333:   window.addEventListener('resize', () => {
+334:     clearTimeout(resizeTimer);
+335:     resizeTimer = setTimeout(() => sequence.onResize(), 150);
+336:   });
+337: }
+338: 
+339: /* ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+340:    ENTRY POINT
+341: ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+342: async function main() {
+343:   const overlay  = createLoadingOverlay();
+344:   const fillEl   = document.getElementById('loading-fill');
+345: 
+346:   const canvas   = document.getElementById('hero-canvas');
+347:   const sequence = new HeroSequence(canvas);
+348: 
+349:   sequence.onProgress = (pct) => {
+350:     if (fillEl) fillEl.style.width = `${Math.round(pct * 100)}%`;
+351:   };
+352: 
+353:   sequence.onReady = () => {
+354:     // Small delay so first frame paints before overlay hides
+355:     setTimeout(() => {
+356:       overlay.classList.add('hidden');
+357:       initHeroScroll(sequence);
+358:       initReveal();
+359:       initParallax();
+360:       initNavbar();
+361:       initSmoothAnchors();
+362:       initResize(sequence);
+363:     }, 400);
+364:   };
+365: 
+366:   await sequence.load();
+367: 
+368:   // Fallback if onReady never fires (images all failed)
+369:   if (!overlay.classList.contains('hidden')) {
+370:     overlay.classList.add('hidden');
+371:     initHeroScroll(sequence);
+372:     initReveal();
+373:     initParallax();
+374:     initNavbar();
+375:     initSmoothAnchors();
+376:     initResize(sequence);
+377:   }
+378: }
+379: 
+380: document.addEventListener('DOMContentLoaded', main);
+381: 
+The above content shows the entire, complete file contents of the requested file.
+
