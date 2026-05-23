@@ -63,7 +63,7 @@ if (canvas) {
       trigger: ".hero",
       start: "top top",
       end: "bottom bottom",
-      scrub: 0.2
+      scrub: 0.05
     },
     onUpdate: () => {
       const img = images[seq.frame];
