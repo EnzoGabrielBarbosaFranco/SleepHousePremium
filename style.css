@@ -820,17 +820,6 @@ address {
   .trust-bar__divider {
     display: none;
   }
-
-  /* Internal borders between cells — items are 1,3,5,7 among all children */
-  .trust-bar__item:nth-of-type(1),
-  .trust-bar__item:nth-of-type(2) {
-    border-bottom: 1px solid var(--clr-border);
-  }
-
-  .trust-bar__item:nth-of-type(1),
-  .trust-bar__item:nth-of-type(3) {
-    border-right: 1px solid var(--clr-border);
-  }
 }
 
 @media (max-width: 480px) {
@@ -1004,8 +993,13 @@ address {
 }
 
 @keyframes scrollMarquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════
