@@ -1,6 +1,6 @@
 // Initialize Lenis for smooth scrolling
 const lenis = new Lenis({
-  duration: 1.2,
+  duration: 0.9,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
   direction: 'vertical',
   gestureDirection: 'vertical',
@@ -63,7 +63,7 @@ if (canvas) {
       trigger: ".hero",
       start: "top top",
       end: "bottom bottom",
-      scrub: 0.5
+      scrub: 0.2
     },
     onUpdate: () => {
       const img = images[seq.frame];

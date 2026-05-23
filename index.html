@@ -31,6 +31,7 @@
       <nav class="navbar__nav" aria-label="Navegação principal">
         <a href="#produtos" class="nav-link">Produtos</a>
         <a href="#marcas" class="nav-link">Marcas</a>
+        <a href="#showroom" class="nav-link">Showroom</a>
         <a href="#depoimentos" class="nav-link">Depoimentos</a>
         <a href="#contato" class="nav-link">Contato</a>
       </nav>
@@ -48,7 +49,8 @@
     </div>
     <div class="navbar__mobile-menu" id="mobile-menu" aria-hidden="true">
       <a href="#produtos" class="nav-link">Produtos</a>
-      <a href="#beneficios" class="nav-link">Benefícios</a>
+      <a href="#marcas" class="nav-link">Marcas</a>
+      <a href="#showroom" class="nav-link">Showroom</a>
       <a href="#depoimentos" class="nav-link">Depoimentos</a>
       <a href="#contato" class="nav-link">Contato</a>
       <a href="#produtos" class="btn btn--primary">Ver colchões</a>
@@ -418,46 +420,67 @@
 
   <!-- ═══════════════ DEPOIMENTOS ═══════════════ -->
   <section class="testimonials reveal-section" id="depoimentos">
+    <div class="testimonials__bg-text" aria-hidden="true">Clientes</div>
     <div class="container">
-      <div class="section-header reveal-up">
-        <span class="section-label">Depoimentos</span>
-        <h2 class="section-title">O que nossos clientes<br /><em>estão dormindo melhor</em></h2>
+      <div class="testimonials__header reveal-up">
+        <span class="section-label">Depoimentos reais</span>
+        <h2 class="section-title">O que dizem quem já<br /><em>dorme diferente</em></h2>
+        <div class="testimonials__rating-summary">
+          <div class="testimonials__stars-row">★★★★★</div>
+          <p>Mais de <strong>5.000 clientes</strong> satisfeitos em Campo Grande</p>
+        </div>
       </div>
-      <div class="testimonials__grid">
 
-        <div class="testimonial-card reveal-up" style="--delay:0s">
-          <div class="testimonial-card__quote-mark" aria-hidden="true">"</div>
-          <div class="testimonial-card__stars" aria-label="5 de 5 estrelas">★★★★★</div>
-          <p class="testimonial-card__text">Comprei o Luxe Pocket há 6 meses e foi a melhor decisão que tomei. Acordo
-            sem dores nas costas pela primeira vez em anos. Vale cada centavo.</p>
-          <div class="testimonial-card__author">
-            <div class="author-avatar" aria-hidden="true">MR</div>
-            <div><strong>Maria R.</strong><span>Campo Grande, MS</span></div>
+      <div class="testimonials__layout">
+
+        <!-- Depoimento em destaque -->
+        <div class="testimonial-featured reveal-up" style="--delay:0s">
+          <div class="testimonial-featured__quote-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 32V19.2C0 8.533 6.4 2.133 19.2 0l2.4 3.6C15.467 5.067 12 8.667 11.2 14.4H18.4V32H0ZM21.6 32V19.2C21.6 8.533 28 2.133 40.8 0l2.4 3.6C37.067 5.067 33.6 8.667 32.8 14.4H40V32H21.6Z" fill="currentColor"/></svg>
+          </div>
+          <div class="testimonial-featured__stars" aria-label="5 de 5 estrelas">★★★★★</div>
+          <p class="testimonial-featured__text">Comprei o Luxe Pocket há 6 meses e foi a melhor decisão que tomei. Acordo sem dores nas costas pela primeira vez em anos. A diferença na qualidade do sono foi imediata — durmo mais profundamente e acordo com muito mais energia. Vale cada centavo investido.</p>
+          <div class="testimonial-featured__author">
+            <div class="author-avatar author-avatar--lg" aria-hidden="true">MR</div>
+            <div>
+              <strong>Maria R.</strong>
+              <span>Colchão Luxe Pocket · Cliente há 6 meses</span>
+              <span class="testimonial-featured__location">Campo Grande, MS</span>
+            </div>
           </div>
         </div>
 
-        <div class="testimonial-card reveal-up" style="--delay:.1s">
-          <div class="testimonial-card__quote-mark" aria-hidden="true">"</div>
-          <div class="testimonial-card__stars" aria-label="5 de 5 estrelas">★★★★★</div>
-          <p class="testimonial-card__text">Atendimento impecável. O consultor me ajudou a escolher o colchão certo para
-            o meu perfil. Entrega rápida e instalação perfeita. Recomendo muito!</p>
-          <div class="testimonial-card__author">
-            <div class="author-avatar" aria-hidden="true">JP</div>
-            <div><strong>João P.</strong><span>Campo Grande, MS</span></div>
-          </div>
-        </div>
+        <!-- Depoimentos menores -->
+        <div class="testimonials__side">
 
-        <div class="testimonial-card reveal-up" style="--delay:.2s">
-          <div class="testimonial-card__quote-mark" aria-hidden="true">"</div>
-          <div class="testimonial-card__stars" aria-label="5 de 5 estrelas">★★★★★</div>
-          <p class="testimonial-card__text">A qualidade do Comfort Plus superou minhas expectativas. Durmo profundamente
-            toda noite e meu marido também. Já indiquei para toda a família.</p>
-          <div class="testimonial-card__author">
-            <div class="author-avatar" aria-hidden="true">AS</div>
-            <div><strong>Ana S.</strong><span>Campo Grande, MS</span></div>
+          <div class="testimonial-card reveal-up" style="--delay:.12s">
+            <div class="testimonial-card__stars" aria-label="5 de 5 estrelas">★★★★★</div>
+            <p class="testimonial-card__text">Atendimento impecável. O consultor me ajudou a escolher o colchão certo para meu perfil. Entrega rápida e instalação perfeita. Recomendo muito!</p>
+            <div class="testimonial-card__author">
+              <div class="author-avatar" aria-hidden="true">JP</div>
+              <div><strong>João P.</strong><span>Campo Grande, MS</span></div>
+            </div>
           </div>
-        </div>
 
+          <div class="testimonial-card reveal-up" style="--delay:.22s">
+            <div class="testimonial-card__stars" aria-label="5 de 5 estrelas">★★★★★</div>
+            <p class="testimonial-card__text">A qualidade do Comfort Plus superou minhas expectativas. Durmo profundamente toda noite e meu marido também. Já indiquei para toda a família!</p>
+            <div class="testimonial-card__author">
+              <div class="author-avatar" aria-hidden="true">AS</div>
+              <div><strong>Ana S.</strong><span>Campo Grande, MS</span></div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal-up" style="--delay:.32s">
+            <div class="testimonial-card__stars" aria-label="5 de 5 estrelas">★★★★★</div>
+            <p class="testimonial-card__text">Fui atendida por uma equipe muito profissional. O showroom é lindo e me senti à vontade para testar cada colchão com calma. Compra excelente!</p>
+            <div class="testimonial-card__author">
+              <div class="author-avatar" aria-hidden="true">CL</div>
+              <div><strong>Carla L.</strong><span>Campo Grande, MS</span></div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -560,54 +583,93 @@
 
   <!-- ═══════════════ FOOTER ═══════════════ -->
   <footer class="footer">
-    <div class="container footer__inner">
-      <div class="footer__col">
-        <a href="#" class="navbar__logo" aria-label="SleepHouse">
-          <span class="logo-icon">◇</span>
-          <span class="logo-text">SleepHouse</span>
-        </a>
-        <p>Transformando noites em experiências de bem-estar desde 2014. Conforto e tecnologia para o seu sono.</p>
-      </div>
-      <div class="footer__col">
-        <h4 class="footer__title">Acesso Rápido</h4>
-        <nav class="footer__links" aria-label="Links rápidos">
-          <a href="#produtos">Produtos</a>
-          <a href="#marcas">Marcas</a>
-          <a href="#depoimentos">Depoimentos</a>
-          <a href="#contato">Contato</a>
-          <a href="#showroom">Showroom</a>
-        </nav>
-      </div>
-      <div class="footer__col">
-        <h4 class="footer__title">Contato & Lojas</h4>
-        <div class="footer__info">
-          <p><strong>WhatsApp:</strong> (67) 9999-9999</p>
-          <p><strong>Horário:</strong> Seg-Sex 08:00 às 18:00<br>Sáb 08:00 às 12:00</p>
-          <p><strong>Matriz:</strong> Av. Afonso Pena, 1234</p>
-          <p><strong>Shopping:</strong> Shopping CG, 2º Piso</p>
+
+    <!-- CTA Banner -->
+    <div class="footer__cta-banner">
+      <div class="container footer__cta-inner">
+        <div class="footer__cta-text">
+          <h3>Pronto para transformar suas noites?</h3>
+          <p>Visite nosso showroom ou fale agora com um especialista.</p>
         </div>
-        <div class="footer__socials">
-          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg></a>
-          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-            </svg></a>
-          <a href="#" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg></a>
+        <div class="footer__cta-actions">
+          <a href="https://wa.me/5567999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20colchões%20SleepHouse."
+            class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="#showroom" class="btn btn--outline footer__cta-btn-outline">Visitar Showroom</a>
         </div>
       </div>
     </div>
-    <div class="container footer__bottom">
-      <div class="footer__bottom-inner">
+
+    <!-- Main footer body -->
+    <div class="footer__body">
+      <div class="container footer__inner">
+
+        <!-- Brand col -->
+        <div class="footer__col footer__col--brand">
+          <a href="#" class="navbar__logo" aria-label="SleepHouse">
+            <span class="logo-icon">◇</span>
+            <span class="logo-text">SleepHouse</span>
+          </a>
+          <p class="footer__tagline">Transformando noites em experiências de bem-estar desde 2014. Conforto e tecnologia para o seu sono perfeito.</p>
+          <div class="footer__socials">
+            <a href="#" aria-label="Instagram" class="footer__social-link">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" aria-label="Facebook" class="footer__social-link">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://wa.me/5567999999999" aria-label="WhatsApp" class="footer__social-link" target="_blank" rel="noopener noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Nav col -->
+        <div class="footer__col">
+          <h4 class="footer__title">Navegação</h4>
+          <nav class="footer__links" aria-label="Links rápidos">
+            <a href="#produtos">Produtos</a>
+            <a href="#marcas">Marcas Parceiras</a>
+            <a href="#showroom">Showroom</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#contato">Contato</a>
+          </nav>
+        </div>
+
+        <!-- Contact col -->
+        <div class="footer__col">
+          <h4 class="footer__title">Nossas Lojas</h4>
+          <div class="footer__store">
+            <div class="footer__store-item">
+              <span class="footer__store-label">Matriz</span>
+              <span>Av. Afonso Pena, 1234 — Campo Grande</span>
+            </div>
+            <div class="footer__store-item">
+              <span class="footer__store-label">Shopping</span>
+              <span>Shopping CG, 2º Piso</span>
+            </div>
+            <div class="footer__store-item">
+              <span class="footer__store-label">Horário</span>
+              <span>Seg–Sex 08h às 18h · Sáb 08h às 12h</span>
+            </div>
+            <div class="footer__store-item">
+              <span class="footer__store-label">WhatsApp</span>
+              <a href="https://wa.me/5567999999999" target="_blank" rel="noopener noreferrer">(67) 9 9999-9999</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p class="footer__copy">© 2026 SleepHouse Campo Grande · Todos os direitos reservados.</p>
+        <div class="footer__bottom-divider" aria-hidden="true">◇</div>
         <p class="footer__dev">Desenvolvido por <strong>EG Tech</strong></p>
-        <p class="footer__copy">© 2026 SleepHouse Campo Grande. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
@@ -615,9 +677,8 @@
   <!-- ═══════════════ FLOATING WHATSAPP ═══════════════ -->
   <a href="https://wa.me/5567999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20colchões%20SleepHouse."
     class="fab-whatsapp" id="fab-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chamar no WhatsApp">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
   </a>
 
