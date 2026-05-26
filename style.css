@@ -364,22 +364,12 @@ address {
   transition: opacity var(--dur-med);
 }
 
-/* Default: dark bg (hero) — show white logo, hide colored */
+.navbar__logo-img--dark {
+  display: none;
+}
+
 .navbar__logo-img--light {
-  display: none;
-}
-
-/* Scrolled: white bg — show colored logo, hide white */
-.navbar.scrolled .navbar__logo-img--dark {
-  display: none;
-}
-
-.navbar.scrolled .navbar__logo-img--light {
   display: block;
-}
-
-.navbar.scrolled .navbar__logo {
-  color: var(--clr-navy);
 }
 
 .logo-icon {
