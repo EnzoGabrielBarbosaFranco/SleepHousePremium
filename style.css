@@ -394,7 +394,7 @@ address {
 .nav-link {
   font-size: 0.875rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, .85);
+  color: var(--clr-navy);
   transition: color var(--dur-fast);
   position: relative;
 }
@@ -411,7 +411,7 @@ address {
 }
 
 .nav-link:hover {
-  color: var(--clr-white);
+  color: var(--clr-text);
 }
 
 .nav-link:hover::after {
