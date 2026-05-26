@@ -336,19 +336,12 @@ address {
   display: flex;
   align-items: center;
   gap: 2rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(26, 20, 118, 0.08);
+  box-shadow: 0 12px 40px rgba(26, 20, 118, 0.08);
   border-radius: 100px;
   padding: 0.75rem 1.5rem;
   transition: all var(--dur-med) var(--ease-out);
-}
-
-.navbar.scrolled .navbar__inner {
-  background: rgba(255, 255, 255, 1);
-  border-color: rgba(26, 20, 118, 0.08);
-  box-shadow: 0 12px 40px rgba(26, 20, 118, 0.08);
 }
 
 .navbar__logo {
@@ -462,7 +455,7 @@ address {
 .navbar__hamburger span {
   display: block;
   width: 22px;
-  height: 1.5px;
+  height: 2px;
   background: var(--clr-navy);
   border-radius: 2px;
   transition: transform var(--dur-med) var(--ease-out), opacity var(--dur-fast);
