@@ -336,19 +336,12 @@ address {
   display: flex;
   align-items: center;
   gap: 2rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(26, 20, 118, 0.08);
+  box-shadow: 0 12px 40px rgba(26, 20, 118, 0.08);
   border-radius: 100px;
   padding: 0.75rem 1.5rem;
   transition: all var(--dur-med) var(--ease-out);
-}
-
-.navbar.scrolled .navbar__inner {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(26, 20, 118, 0.08);
-  box-shadow: 0 12px 40px rgba(26, 20, 118, 0.08);
 }
 
 .navbar__logo {
@@ -358,7 +351,7 @@ address {
   font-family: var(--font-serif);
   font-size: 1.35rem;
   font-weight: 400;
-  color: var(--clr-white);
+  color: var(--clr-navy);
   transition: color var(--dur-fast);
   flex-shrink: 0;
 }
@@ -371,22 +364,13 @@ address {
   transition: opacity var(--dur-med);
 }
 
-/* Default: dark bg (hero) — show white logo, hide colored */
+/* Always show colored logo, hide white logo */
+.navbar__logo-img--dark {
+  display: none;
+}
+
 .navbar__logo-img--light {
-  display: none;
-}
-
-/* Scrolled: white bg — show colored logo, hide white */
-.navbar.scrolled .navbar__logo-img--dark {
-  display: none;
-}
-
-.navbar.scrolled .navbar__logo-img--light {
   display: block;
-}
-
-.navbar.scrolled .navbar__logo {
-  color: var(--clr-navy);
 }
 
 .logo-icon {
@@ -411,7 +395,7 @@ address {
 .nav-link {
   font-size: 0.875rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, .85);
+  color: var(--clr-body);
   transition: color var(--dur-fast);
   position: relative;
 }
@@ -428,18 +412,6 @@ address {
 }
 
 .nav-link:hover {
-  color: var(--clr-white);
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-.navbar.scrolled .nav-link {
-  color: var(--clr-body);
-}
-
-.navbar.scrolled .nav-link:hover {
   color: var(--clr-navy);
 }
 
@@ -515,7 +487,7 @@ address {
    HERO
    ══════════════════════════════════════════════════════════════ */
 .hero {
-  height: 200vh;
+  height: 125vh;
   position: relative;
 }
 
@@ -534,7 +506,8 @@ address {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  will-change: filter, transform;
+  pointer-events: none;
+  will-change: transform;
 }
 
 /* Cursor glow azul */
@@ -613,17 +586,17 @@ address {
 }
 
 .hero__eyebrow {
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 700;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--clr-gold-pale);
+  color: var(--clr-white);
   margin-bottom: 1rem;
 }
 
 .hero__rule {
   width: 40px;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(to right, transparent, var(--clr-gold-light), transparent);
   margin: 0 auto 1.4rem;
 }

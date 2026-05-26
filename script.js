@@ -11,11 +11,6 @@ const lenis = new Lenis({
   infinite: false,
 });
 
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
 
 // Register GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -28,51 +23,7 @@ gsap.ticker.add((time) => {
 });
 gsap.ticker.lagSmoothing(0, 0);
 
-// ----------------------------------------------------
-// Hero Background Canvas Sequence
-// ----------------------------------------------------
-const canvas = document.getElementById('hero-canvas');
-if (canvas) {
-  const context = canvas.getContext('2d');
-  canvas.width = 1920;
-  canvas.height = 1080;
 
-  const frameCount = 80;
-  const currentFrame = index => (
-    `Bedroom_transitioning_to_bed_202605222040_${index.toString().padStart(3, '0')}.jpg`
-  );
-
-  const images = [];
-  const seq = { frame: 0 };
-
-  for (let i = 0; i < frameCount; i++) {
-    const img = new Image();
-    img.src = currentFrame(i);
-    images.push(img);
-  }
-
-  images[0].onload = () => {
-    context.drawImage(images[0], 0, 0, canvas.width, canvas.height);
-  };
-
-  gsap.to(seq, {
-    frame: frameCount - 1,
-    snap: "frame",
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".hero",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 0.05
-    },
-    onUpdate: () => {
-      const img = images[seq.frame];
-      if (img && img.complete) {
-        context.drawImage(img, 0, 0, canvas.width, canvas.height);
-      }
-    }
-  });
-}
 
 // ----------------------------------------------------
 // GSAP Animations
@@ -158,14 +109,7 @@ if (hamburger && mobileMenu) {
   });
 }
 
-// Add class to navbar on scroll for glass effect
-lenis.on('scroll', (e) => {
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
+
 
 // Smooth scroll for anchor links using Lenis
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
