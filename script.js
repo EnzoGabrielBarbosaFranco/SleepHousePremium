@@ -1,28 +1,10 @@
-// Initialize Lenis for smooth scrolling
-const lenis = new Lenis({
-  duration: 0.9,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  direction: 'vertical',
-  gestureDirection: 'vertical',
-  smooth: true,
-  mouseMultiplier: 1,
-  smoothTouch: false,
-  touchMultiplier: 2,
-  infinite: false,
-});
-
-
-// Register GSAP ScrollTrigger
+// ----------------------------------------------------
+// GSAP Setup — sem Lenis para máxima performance
+// ----------------------------------------------------
 gsap.registerPlugin(ScrollTrigger);
 
-// Connect GSAP ScrollTrigger with Lenis
-lenis.on('scroll', ScrollTrigger.update);
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
-});
-gsap.ticker.lagSmoothing(0, 0);
-
+// Ativar lag smoothing padrão do GSAP (ajuda em computadores lentos)
+gsap.ticker.lagSmoothing(500, 33);
 
 
 // ----------------------------------------------------
@@ -36,66 +18,80 @@ gsap.utils.toArray('.hero__animate').forEach(element => {
   heroTimeline.to(element, { 
     autoAlpha: 1, 
     y: 0, 
-    duration: 1, 
+    duration: 0.9, 
     ease: 'power3.out' 
   }, delay / 1000);
 });
 
 
-// 2. Generic Reveal Up elements (used on products, testimonials, trust bar, etc)
-gsap.utils.toArray('.reveal-up').forEach(element => {
-  // Try to parse the --delay variable, otherwise default to 0
-  let delayAttr = element.style.getPropertyValue('--delay');
-  let delay = delayAttr ? parseFloat(delayAttr.replace('s', '')) : 0;
-  
-  gsap.from(element, {
-    scrollTrigger: {
-      trigger: element,
-      start: "top 85%",
-      toggleActions: "play none none reverse"
-    },
-    y: 50,
-    autoAlpha: 0,
-    duration: 0.8,
-    delay: delay,
-    ease: 'power3.out'
-  });
-});
-
-// 3. Parallax Image Effect for background images
-gsap.utils.toArray('.parallax-break__image').forEach(img => {
-  gsap.to(img, {
-    yPercent: 20,
-    ease: "none",
-    scrollTrigger: {
-      trigger: img.parentElement,
-      start: "top bottom", 
-      end: "bottom top",
-      scrub: 1
+// 2. Generic Reveal Up elements — usando IntersectionObserver para melhor performance
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const delayAttr = el.style.getPropertyValue('--delay');
+      const delay = delayAttr ? parseFloat(delayAttr.replace('s', '')) : 0;
+      gsap.to(el, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.7,
+        delay: delay,
+        ease: 'power3.out'
+      });
+      revealObserver.unobserve(el);
     }
   });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+gsap.utils.toArray('.reveal-up').forEach(el => {
+  gsap.set(el, { autoAlpha: 0, y: 40 });
+  revealObserver.observe(el);
 });
 
-// 4. Section Headers Stagger (label, title, body)
-gsap.utils.toArray('.section-header').forEach(header => {
-  gsap.from(header.children, {
-    scrollTrigger: {
-      trigger: header,
-      start: "top 85%",
-      toggleActions: "play none none reverse"
-    },
-    y: 30,
-    autoAlpha: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out'
+
+// 3. Section Headers Stagger — também via IntersectionObserver
+const headerObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      gsap.to(Array.from(entry.target.children), {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: 'power3.out'
+      });
+      headerObserver.unobserve(entry.target);
+    }
   });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+gsap.utils.toArray('.section-header').forEach(header => {
+  gsap.set(Array.from(header.children), { autoAlpha: 0, y: 25 });
+  headerObserver.observe(header);
 });
 
-// ----------------------------------------------------
-// Navbar / Mobile Menu / Scroll
-// ----------------------------------------------------
 
+// 4. Parallax leve — apenas se não for dispositivo de baixa performance
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReducedMotion) {
+  gsap.utils.toArray('.parallax-break__image').forEach(img => {
+    gsap.to(img, {
+      yPercent: 15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: img.closest('.parallax-break'),
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 2  // valor maior = menos atualizações por frame
+      }
+    });
+  });
+}
+
+
+// ----------------------------------------------------
+// Navbar / Mobile Menu
+// ----------------------------------------------------
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 const navbar = document.getElementById('navbar');
@@ -105,13 +101,12 @@ if (hamburger && mobileMenu) {
     hamburger.classList.toggle('open');
     mobileMenu.classList.toggle('open');
     const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-    hamburger.setAttribute('aria-expanded', !isExpanded);
+    hamburger.setAttribute('aria-expanded', String(!isExpanded));
   });
 }
 
 
-
-// Smooth scroll for anchor links using Lenis
+// Smooth scroll nativo para links de âncora
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const targetId = this.getAttribute('href');
@@ -120,7 +115,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
       e.preventDefault();
-      lenis.scrollTo(targetElement, { offset: -80 });
+      const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
       
       // Close mobile menu if open
       if (mobileMenu && mobileMenu.classList.contains('open')) {
@@ -132,6 +128,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+
 // ----------------------------------------------------
 // Product Filters
 // ----------------------------------------------------
@@ -141,9 +138,7 @@ const productCards = document.querySelectorAll('.product-card');
 if (filterBtns.length > 0 && productCards.length > 0) {
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Remove active from all buttons
       filterBtns.forEach(b => b.classList.remove('active'));
-      // Add active to clicked button
       btn.classList.add('active');
 
       const filterValue = btn.getAttribute('data-filter');
@@ -151,13 +146,12 @@ if (filterBtns.length > 0 && productCards.length > 0) {
       productCards.forEach(card => {
         if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
           card.style.display = 'block';
-          gsap.fromTo(card, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, overwrite: true });
+          gsap.fromTo(card, { autoAlpha: 0, y: 15 }, { autoAlpha: 1, y: 0, duration: 0.35, overwrite: true });
         } else {
           card.style.display = 'none';
         }
       });
-      
-      // Refresh ScrollTrigger so it recalculates heights
+
       ScrollTrigger.refresh();
     });
   });

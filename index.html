@@ -19,7 +19,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=1.1" />
+  <link rel="preload" href="imagem-hero.png" as="image" />
+  <link rel="stylesheet" href="style.css?v=1.2" />
 </head>
 
 <body>
@@ -64,6 +65,7 @@
   <section class="hero" id="hero">
     <div class="hero__sticky">
       <img src="imagem-hero.png" alt="Bedroom transitioning to bed" class="hero__canvas" aria-hidden="true"
+        fetchpriority="high"
         style="object-fit: cover; width: 100%; height: 100%;">
       <div class="hero__cursor-glow" id="hero-cursor-glow" aria-hidden="true"></div>
       <div class="hero__gradient hero__gradient--bottom"></div>
@@ -724,10 +726,9 @@
     </svg>
   </a>
 
-  <!-- GSAP & Lenis Smooth Scrolling -->
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script>
 
   <script src="script.js"></script>
 </body>

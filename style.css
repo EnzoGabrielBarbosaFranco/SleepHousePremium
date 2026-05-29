@@ -508,7 +508,6 @@ address {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  will-change: transform;
 }
 
 .hero__canvas {
@@ -518,7 +517,6 @@ address {
   height: 100%;
   object-fit: cover;
   pointer-events: none;
-  will-change: transform;
 }
 
 /* Cursor glow azul */
@@ -529,11 +527,14 @@ address {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(122, 173, 201, .14) 0%, transparent 70%);
   pointer-events: none;
-  transform: translate(-50%, -50%);
   z-index: 3;
   opacity: 0;
   transition: opacity var(--dur-med);
-  will-change: left, top;
+  /* Usando transform para evitar reflow a cada movimento do mouse */
+  will-change: transform;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%) translate(0px, 0px);
 }
 
 .hero__sticky:hover .hero__cursor-glow {
@@ -710,16 +711,15 @@ address {
 }
 
 .trust-bar__card {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.92);
+  /* backdrop-filter removido — visível logo abaixo do hero, pesado */
   border-radius: var(--radius-pill);
   box-shadow: 0 8px 32px rgba(26, 20, 118, 0.06);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .trust-bar__item {
@@ -1048,18 +1048,15 @@ address {
 
 /* Product Card */
 .product-card {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.92);
+  /* backdrop-filter removido — 6 cards com blur(16px) simultâneos são muito pesados */
   border-radius: var(--radius-xl);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 12px 40px rgba(26, 20, 118, 0.04);
   transition:
     transform var(--dur-med) var(--ease-out),
-    box-shadow var(--dur-med) var(--ease-out),
-    border-color var(--dur-med),
-    opacity var(--dur-med) var(--ease-out);
+    box-shadow var(--dur-med) var(--ease-out);
 }
 
 .product-card:hover {
@@ -1389,10 +1386,9 @@ address {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.88);
+  /* backdrop-filter removido */
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 100px;
   padding: 0.6rem 1.25rem;
   margin-top: 1.25rem;
@@ -1539,16 +1535,15 @@ address {
 }
 
 .testimonial-card {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.92);
+  /* backdrop-filter removido — pesado em GPUs médias */
   border-radius: var(--radius-xl);
   padding: 1.75rem 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   position: relative;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(26, 20, 118, 0.05);
-  transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med), border-color var(--dur-med);
+  transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med);
 }
 
 .testimonial-card:hover {
@@ -1728,12 +1723,11 @@ address {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.85);
+  /* backdrop-filter removido — 3 itens com blur simultâneos são pesados */
   padding: 1.25rem 1.5rem;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: 0 8px 24px rgba(26, 20, 118, 0.03);
   transition: transform var(--dur-fast), box-shadow var(--dur-fast);
 }
