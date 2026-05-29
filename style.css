@@ -498,7 +498,7 @@ address {
    HERO
    ══════════════════════════════════════════════════════════════ */
 .hero {
-  height: 125vh;
+  height: 120vh;
   position: relative;
 }
 
@@ -707,17 +707,17 @@ address {
   position: relative;
   z-index: 10;
   padding: 0 0 2.5rem;
-  margin-top: -3rem;
+  margin-top: -2.5rem;
 }
 
 .trust-bar__card {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.97);
   /* backdrop-filter removido — visível logo abaixo do hero, pesado */
   border-radius: var(--radius-pill);
-  box-shadow: 0 8px 32px rgba(26, 20, 118, 0.06);
+  box-shadow: 0 8px 32px rgba(26, 20, 118, 0.09);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 1rem 2.5rem;
   border: 1px solid rgba(255, 255, 255, 0.8);
 }
@@ -1402,7 +1402,7 @@ address {
 }
 
 .testimonials__rating-summary p {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   color: var(--clr-body);
   margin: 0;
 }
@@ -2176,6 +2176,31 @@ address {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .hero {
+    height: 100vh;
+    position: relative;
+  }
+
+  .hero__content {
+    top: 50%;
+    left: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+  }
+
+  .navbar__nav,
+  .btn--whatsapp {
+    display: none;
+  }
+
+  .navbar__mobile-menu {
+    display: flex;
+  }
+
+  .trust-bar {
+    margin-top: -5rem;
+  }
+
   .products__grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2219,19 +2244,8 @@ address {
     display: none;
   }
 
-  .navbar__mobile-menu {
-    display: flex;
-  }
-
   .hero__headline {
     font-size: clamp(2.4rem, 10vw, 3.8rem);
-  }
-
-  .hero__content {
-    top: 50%;
-    left: 50%;
-    bottom: auto;
-    transform: translate(-50%, -50%);
   }
 
   .intro__inner {
@@ -2299,6 +2313,10 @@ address {
   .hero__actions {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .trust-bar {
+    margin-top: -8rem;
   }
 
   .hero__actions .btn {
